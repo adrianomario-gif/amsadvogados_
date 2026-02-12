@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> |AMS| MARIO SILVA - ADVOGADOS | Advocacia Trabalhista Especializada</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #102E4A;
+            --accent: #FF8C00;
+            --slate: #64748b;
+        }
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; overflow-x: hidden; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        
+        /* Efeito Ken Burns (Zoom Cinematográfico) */
+        @keyframes kenburns {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.15); }
+        }
+        .animate-kenburns { animation: kenburns 12s ease-out infinite alternate; }
+
+        /* Animação de Revelação no Scroll */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Transição do Header ao Rolar */
+        .header-scrolled { background: white; padding: 0.75rem 0; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        .header-scrolled .nav-link { color: var(--primary); }
+        .header-scrolled .logo-text { color: var(--primary); }
+        .header-scrolled #mobile-toggle { color: var(--primary); }
+
+        /* Linha Decorativa estilo NWADV */
+        .nw-line {
+            height: 2px;
+            background: linear-gradient(to right, var(--accent), transparent);
+            width: 80px;
+            display: block;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Controle de Slides do Banner */
+        .hero-slide { opacity: 0; transition: opacity 1s ease-in-out; position: absolute; inset: 0; }
+        .hero-slide.active { opacity: 1; z-index: 10; }
+
+        /* Pulso do WhatsApp */
+        @keyframes pulse-green {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        .whatsapp-pulse { animation: pulse-green 2s infinite; }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/"
+  }
+}
+</script>
+</head>
+<body class="bg-white text-slate-900">
+
+    <!-- CABEÇALHO -->
+    <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-700 py-6">
+        <div class="container mx-auto px-4 lg:px-12 flex justify-between items-center">
+            <a href="#" class="flex flex-col">
+                <span class="logo-text text-xl md:text-3xl font-bold tracking-tighter text-white transition-colors">
+                   AMS | MARIO SILVA <span class="text-[#FF8C00]"></span> - ADVOGADOS
+                </span>
+                <span class="text-[9px] uppercase tracking-[4px] font-bold text-[#FF8C00]">Advocacia Estratégica</span>
+            </a>
+
+            <nav class="hidden lg:flex items-center gap-10">
+                <a href="#inicio" class="nav-link text-[11px] uppercase font-bold tracking-[2px] text-white hover:text-[#FF8C00] transition-colors">Início</a>
+                <a href="#direitos" class="nav-link text-[11px] uppercase font-bold tracking-[2px] text-white hover:text-[#FF8C00] transition-colors">Direitos</a>
+                <a href="#atuacao" class="nav-link text-[11px] uppercase font-bold tracking-[2px] text-white hover:text-[#FF8C00] transition-colors">Atuação</a>
+                <a href="#equipe" class="nav-link text-[11px] uppercase font-bold tracking-[2px] text-white hover:text-[#FF8C00] transition-colors">Equipe</a>
+                <a href="https://wa.me/5511974922569" target="_blank" class="bg-[#25D366] text-white px-7 py-3 rounded-sm text-[11px] font-bold tracking-widest hover:bg-[#128C7E] transition-all flex items-center gap-2 shadow-lg">
+                    WHATSAPP
+                </a>
+            </nav>
+
+            <button id="mobile-toggle" class="lg:hidden text-white text-2xl">☰</button>
+        </div>
+    </header>
+
+    <!-- MENU MOBILE -->
+    <div id="mobile-menu" class="fixed inset-0 bg-[#102E4A] z-[70] transition-transform duration-500 transform translate-x-full">
+        <button id="mobile-close" class="absolute top-8 right-8 text-white text-5xl font-light">&times;</button>
+        <nav class="h-full flex flex-col justify-center items-center gap-10">
+            <a href="#inicio" class="mobile-link text-white text-2xl font-serif">Início</a>
+            <a href="#direitos" class="mobile-link text-white text-2xl font-serif">Direitos</a>
+            <a href="#atuacao" class="mobile-link text-white text-2xl font-serif">Atuação</a>
+            <a href="#equipe" class="mobile-link text-white text-2xl font-serif">Equipe</a>
+            <a href="https://wa.me/5511974922569" target="_blank" class="bg-[#25D366] text-white px-10 py-5 rounded-sm font-bold uppercase tracking-widest">WhatsApp</a>
+        </nav>
+    </div>
+
+    <!-- BANNER PRINCIPAL (HERO) -->
+    <section id="inicio" class="relative h-screen overflow-hidden bg-[#102E4A]">
+        <!-- Slide 1 -->
+        <div class="hero-slide active">
+            <div class="absolute inset-0 overflow-hidden">
+                <img src="https://osasco.sp.gov.br/wp-content/uploads/2025/02/arquivo-secom_pmo_0018_d-1.jpg" class="w-full h-full object-cover animate-kenburns" alt="Banner Advocacia">
+                <div class="absolute inset-0 bg-gradient-to-r from-[#102E4A] via-[#102E4A]/60 to-transparent"></div>
+            </div>
+            <div class="container mx-auto px-4 lg:px-12 h-full flex items-center relative z-20">
+                <div class="max-w-4xl">
+                    <span class="text-[#FF8C00] font-bold tracking-[8px] uppercase text-[10px] mb-6 block">Especialistas em Direito do Trabalho</span>
+                    <h1 class="text-white font-serif text-5xl md:text-8xl mb-8 leading-[1.1]">Defesa dos Seus Direitos com Estratégia</h1>
+                    <p class="text-slate-200 text-lg md:text-2xl mb-12 font-light max-w-2xl leading-relaxed">Protegemos o trabalhador com foco na máxima reparação. Atuação técnica, estratégica e combativa.</p>
+                    <div class="flex flex-wrap gap-5">
+                        <a href="https://wa.me/5511974922569" class="bg-[#FF8C00] text-white font-bold py-5 px-12 rounded-sm uppercase text-[11px] tracking-[3px] hover:bg-white hover:text-[#102E4A] transition-all shadow-2xl">Atendimento Imediato</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="hero-slide">
+            <div class="absolute inset-0 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover animate-kenburns" alt="Consultoria Jurídica">
+                <div class="absolute inset-0 bg-gradient-to-r from-[#102E4A] via-[#102E4A]/60 to-transparent"></div>
+            </div>
+            <div class="container mx-auto px-4 lg:px-12 h-full flex items-center relative z-20">
+                <div class="max-w-4xl">
+                    <span class="text-[#FF8C00] font-bold tracking-[8px] uppercase text-[10px] mb-6 block">Resultados e Compromisso</span>
+                    <h1 class="text-white font-serif text-5xl md:text-8xl mb-8 leading-[1.1]">Equilibrando a Relação de Trabalho</h1>
+                    <p class="text-slate-200 text-lg md:text-2xl mb-12 font-light max-w-2xl leading-relaxed">Lutamos por verbas rescisórias, horas extras e combate ao assédio. Transparência total.</p>
+                    <div class="flex flex-wrap gap-5">
+                        <a href="https://wa.me/5511974922569" class="bg-[#FF8C00] text-white font-bold py-5 px-12 rounded-sm uppercase text-[11px] tracking-[3px] hover:bg-white hover:text-[#102E4A] transition-all shadow-2xl">Falar com Advogado</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Indicadores do Slide -->
+        <div class="absolute bottom-12 right-12 z-30 flex flex-col gap-3">
+            <button class="slide-dot h-20 w-1 rounded-full bg-[#FF8C00]" data-idx="0"></button>
+            <button class="slide-dot h-20 w-1 rounded-full bg-white/20" data-idx="1"></button>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DE DIREITOS -->
+    <section id="direitos" class="py-32 bg-white">
+        <div class="container mx-auto px-4 lg:px-12">
+            <div class="reveal flex flex-col lg:flex-row gap-20 items-center">
+                <div class="lg:w-1/2">
+                    <span class="nw-line"></span>
+                    <h2 class="text-[#102E4A] font-serif text-4xl md:text-6xl mb-10 leading-tight">Advocacia Trabalhista Especializada</h2>
+                    <p class="text-slate-600 text-xl mb-10 leading-relaxed font-light">
+                        Você trabalha, cumpre sua jornada e, ainda assim, sente que seus direitos não estão sendo respeitados? 
+                        Horas extras não pagas, verbas rescisórias incorretas, assédio, acúmulo de função ou demissão injusta são situações graves — e você não precisa enfrentá-las sozinho.
+                    </p>
+                    <div class="space-y-6 mb-12">
+                        <div class="flex gap-5 items-start bg-slate-50 p-6 border-l-4 border-[#FF8C00]">
+                            <span class="text-[#FF8C00] font-bold">✔️</span>
+                            <p class="text-[#102E4A] font-bold text-sm uppercase tracking-wider">Atendimento online ou presencial com sigilo absoluto.</p>
+                        </div>
+                        <div class="flex gap-5 items-start bg-slate-50 p-6 border-l-4 border-[#102E4A]">
+                            <span class="text-[#102E4A] font-bold">✔️</span>
+                            <p class="text-[#102E4A] font-bold text-sm uppercase tracking-wider">Linguagem clara, sem juridiquês, focado no seu resultado.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-[#102E4A] text-white p-12 rounded-sm shadow-2xl translate-y-8">
+                        <span class="text-5xl mb-6 block">⚖️</span>
+                        <h4 class="text-xl font-bold mb-4 uppercase tracking-widest text-[#FF8C00]">Prevenção</h4>
+                        <p class="text-slate-400 text-sm font-light">Muitos trabalhadores perdem dinheiro por não agir no momento certo. Empresas contam com o seu desconhecimento.</p>
+                    </div>
+                    <div class="bg-white p-12 rounded-sm shadow-xl border border-slate-100">
+                        <span class="text-5xl mb-6 block">🤝</span>
+                        <h4 class="text-[#102E4A] font-bold mb-4 uppercase tracking-widest">Humanizado</h4>
+                        <p class="text-slate-500 text-sm font-light leading-relaxed">Seu problema é tratado com seriedade, respeito e compromisso real com a sua história.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ÁREAS DE ATUAÇÃO -->
+    <section id="atuacao" class="py-32 bg-[#102E4A]">
+        <div class="container mx-auto px-4 lg:px-12 text-center mb-24 reveal">
+            <span class="text-[#FF8C00] font-bold tracking-[6px] uppercase text-[10px] mb-4 block">ESPECIALIDADES</span>
+            <h2 class="text-white font-serif text-5xl md:text-7xl mb-8">Atuação Técnica Completa</h2>
+            <div class="w-32 h-1 bg-[#FF8C00] mx-auto"></div>
+        </div>
+
+        <div class="container mx-auto px-4 lg:px-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+            <div class="reveal bg-white/5 border border-white/10 p-8 rounded-sm hover:bg-[#FF8C00] transition-all group cursor-pointer hover:scale-105">
+                <span class="text-white/20 font-serif text-4xl group-hover:text-white mb-4 block">01</span>
+                <h4 class="text-white font-bold text-sm uppercase tracking-widest leading-snug">Reclamação Trabalhista</h4>
+            </div>
+            <div class="reveal bg-white/5 border border-white/10 p-8 rounded-sm hover:bg-[#FF8C00] transition-all group cursor-pointer hover:scale-105">
+                <span class="text-white/20 font-serif text-4xl group-hover:text-white mb-4 block">02</span>
+                <h4 class="text-white font-bold text-sm uppercase tracking-widest leading-snug">Horas Extras e Noturno</h4>
+            </div>
+            <div class="reveal bg-white/5 border border-white/10 p-8 rounded-sm hover:bg-[#FF8C00] transition-all group cursor-pointer hover:scale-105">
+                <span class="text-white/20 font-serif text-4xl group-hover:text-white mb-4 block">03</span>
+                <h4 class="text-white font-bold text-sm uppercase tracking-widest leading-snug">Verbas Rescisórias</h4>
+            </div>
+            <div class="reveal bg-white/5 border border-white/10 p-8 rounded-sm hover:bg-[#FF8C00] transition-all group cursor-pointer hover:scale-105">
+                <span class="text-white/20 font-serif text-4xl group-hover:text-white mb-4 block">04</span>
+                <h4 class="text-white font-bold text-sm uppercase tracking-widest leading-snug">Assédio Moral e Sexual</h4>
+            </div>
+            <div class="reveal bg-white/5 border border-white/10 p-8 rounded-sm hover:bg-[#FF8C00] transition-all group cursor-pointer hover:scale-105">
+                <span class="text-white/20 font-serif text-4xl group-hover:text-white mb-4 block">05</span>
+                <h4 class="text-white font-bold text-sm uppercase tracking-widest leading-snug">Vínculo PJ / MEI</h4>
+            </div>
+            <div class="reveal bg-white/5 border border-white/10 p-8 rounded-sm hover:bg-[#FF8C00] transition-all group cursor-pointer hover:scale-105">
+                <span class="text-white/20 font-serif text-4xl group-hover:text-white mb-4 block">06</span>
+                <h4 class="text-white font-bold text-sm uppercase tracking-widest leading-snug">Acidente de Trabalho</h4>
+            </div>
+            <div class="reveal bg-white/5 border border-white/10 p-8 rounded-sm hover:bg-[#FF8C00] transition-all group cursor-pointer hover:scale-105">
+                <span class="text-white/20 font-serif text-4xl group-hover:text-white mb-4 block">07</span>
+                <h4 class="text-white font-bold text-sm uppercase tracking-widest leading-snug">Justa Causa Indevida</h4>
+            </div>
+            <div class="reveal bg-white/5 border border-white/10 p-8 rounded-sm hover:bg-[#FF8C00] transition-all group cursor-pointer hover:scale-105">
+                <span class="text-white/20 font-serif text-4xl group-hover:text-white mb-4 block">08</span>
+                <h4 class="text-white font-bold text-sm uppercase tracking-widest leading-snug">Acúmulo de Função</h4>
+            </div>
+            <div class="reveal bg-white/5 border border-white/10 p-8 rounded-sm hover:bg-[#FF8C00] transition-all group cursor-pointer hover:scale-105">
+                <span class="text-white/20 font-serif text-4xl group-hover:text-white mb-4 block">09</span>
+                <h4 class="text-white font-bold text-sm uppercase tracking-widest leading-snug">FGTS em Atraso</h4>
+            </div>
+            <div class="reveal bg-white/5 border border-white/10 p-8 rounded-sm hover:bg-[#FF8C00] transition-all group cursor-pointer hover:scale-105">
+                <span class="text-white/20 font-serif text-4xl group-hover:text-white mb-4 block">10</span>
+                <h4 class="text-white font-bold text-sm uppercase tracking-widest leading-snug">Estabilidade Gestante</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DA EQUIPE -->
+    <section id="equipe" class="py-32 bg-slate-50">
+        <div class="container mx-auto px-4 lg:px-12 reveal mb-24">
+            <span class="nw-line"></span>
+            <h2 class="text-[#102E4A] font-serif text-5xl md:text-7xl">Nossa Equipe</h2>
+        </div>
+
+        <div class="container mx-auto px-4 lg:px-12 grid md:grid-cols-2 gap-16">
+            <!-- DR. ADRIANO -->
+            <div class="reveal group flex flex-col md:flex-row bg-white shadow-2xl rounded-sm overflow-hidden hover:-translate-y-2 transition-all">
+                <div class="md:w-1/2 overflow-hidden h-[500px]">
+                    <img src="adriano.jpeg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" alt="Dr. Adriano Silva">
+                </div>
+                <div class="md:w-1/2 p-10 flex flex-col justify-center">
+                    <span class="text-[#FF8C00] font-bold text-[10px] tracking-widest mb-4 uppercase">Sócio-Fundador | Advogado</span>
+                    <h3 class="text-3xl font-serif text-[#102E4A] mb-6"> Dr. Adriano Silva</h3>
+                    <p class="text-slate-500 font-light italic text-sm leading-relaxed">
+                        Especialista em Direito do Trabalho , o Dr. Adriano atua com rigor técnico, atenção absoluta aos detalhes e profundo compromisso com a justiça trabalhista. Sua prática é orientada pela defesa efetiva dos direitos de cada cliente, buscando soluções sólidas e a reparação justa, de forma ética, estratégica e responsável.                    </p>
+                </div>
+            </div>
+
+            <!-- LUCIANO FRANCISCO -->
+            <div class="reveal group flex flex-col md:flex-row bg-white shadow-2xl rounded-sm overflow-hidden hover:-translate-y-2 transition-all">
+                <div class="md:w-1/2 overflow-hidden h-[500px]">
+                    <img src="luciano.jpeg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" alt="Luciano">
+                </div>
+                <div class="md:w-1/2 p-10 flex flex-col justify-center">
+                    <span class="text-[#FF8C00] font-bold text-[10px] tracking-widest mb-4 uppercase">Analista Jurídico Senior </span>
+                    <h3 class="text-3xl font-serif text-[#102E4A] mb-6">Luciano Francisco</h3>
+                    <p class="text-slate-500 font-light text-xs leading-relaxed overflow-y-auto max-h-[250px] pr-2">
+                        Luciano Francisco é Analista Jurídico com atuação focada em Direito do Trabalho, possuindo sólida experiência no suporte técnico a demandas consultivas e contenciosas. Atua na análise de processos, elaboração de peças e relatórios jurídicos, acompanhamento processual e apoio estratégico na gestão de riscos trabalhistas. <br><br>
+                        Possui perfil analítico, organizado e atento aos detalhes, com domínio da legislação trabalhista, CLT, normas coletivas e rotinas do departamento jurídico. Tem facilidade na interpretação de decisões judiciais e controle de prazos, buscando sempre soluções eficientes para nossos Clientes.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer id="contato" class="bg-[#102E4A] pt-32 pb-12 border-t border-white/5">
+        <div class="container mx-auto px-4 lg:px-12 flex flex-col lg:flex-row justify-between gap-20 mb-24 reveal">
+            <div class="lg:w-1/2">
+                <h3 class="text-white text-4xl font-bold tracking-tighter mb-8">DR. ADRIANO <span class="text-[#FF8C00]"></span> SILVA</h3>
+                <p class="text-slate-400 max-w-md text-lg font-light mb-10 leading-relaxed">Sediados em Osasco/SP, usamos técnica jurídica e estratégia processual para equilibrar a relação entre empregado e empresa.</p>
+                <div class="flex gap-8 text-slate-500 text-xs font-bold uppercase tracking-widest">
+                    <span>OAB/SP </span>
+                </div>
+            </div>
+            <div class="lg:w-1/3 bg-white/5 p-10 rounded-sm">
+                <h5 class="text-[#FF8C00] font-bold uppercase text-[10px] tracking-[4px] mb-8">Dúvidas sobre seus direitos?</h5>
+                <p class="text-white text-sm mb-8 font-light italic">Uma simples conversa pode esclarecer sua situação e evitar grandes prejuízos financeiros.</p>
+                <a href="https://wa.me/5511974922569" target="_blank" class="bg-[#25D366] text-white w-full py-5 px-6 rounded-sm font-bold flex items-center justify-center gap-3 hover:bg-[#128C7E] transition-all shadow-2xl">
+                    FALAR COM UM ADVOGADO
+                </a>
+            </div>
+        </div>
+        
+        <div class="container mx-auto px-4 lg:px-12 grid md:grid-cols-3 gap-8 py-12 border-t border-white/5 text-slate-400 text-sm reveal">
+            <div>📍 Centro de Osasco/SP</div>
+            <div>✉️ adriano.mario@outlook.com</div>
+            <div>📱 (11) 97492-2569</div>
+        </div>
+
+        <div class="container mx-auto px-4 lg:px-12 pt-12 border-t border-white/5 text-[10px] uppercase tracking-[4px] text-slate-600 text-center">
+            &copy; 2024 AMS|MARIO ADVOGADOS. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <!-- BOTÃO FLUTUANTE WHATSAPP -->
+    <a href="https://wa.me/5511974922569" target="_blank" class="fixed bottom-10 right-10 z-[100] bg-[#25D366] text-white p-5 rounded-full shadow-2xl whatsapp-pulse">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.512-2.961-2.628-.086-.117-.705-.938-.705-1.792 0-.853.448-1.274.607-1.446.159-.171.347-.214.462-.214.116 0 .231.001.332.006.106.005.249-.04.391.297.144.343.491 1.196.535 1.286.043.09.072.194.014.307-.058.113-.087.183-.175.282-.087.1-.183.224-.261.302-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.088.275.073.376-.044.101-.117.433-.506.549-.68.116-.174.231-.145.39-.087s1.011.477 1.184.564c.174.087.289.129.332.202.043.073.043.423-.101.827zM12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2z"/>
+        </svg>
+    </a>
+
+    <script>
+        // COMPORTAMENTO DO HEADER NO SCROLL
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+                header.querySelectorAll('.nav-link').forEach(l => l.style.color = '#102E4A');
+                header.querySelector('.logo-text').style.color = '#102E4A';
+                header.querySelector('#mobile-toggle').style.color = '#102E4A';
+            } else {
+                header.classList.remove('header-scrolled');
+                header.querySelectorAll('.nav-link').forEach(l => l.style.color = 'white');
+                header.querySelector('.logo-text').style.color = 'white';
+                header.querySelector('#mobile-toggle').style.color = 'white';
+            }
+        });
+
+        // CARROSSEL DO BANNER (HERO)
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots = document.querySelectorAll('.slide-dot');
+
+        function changeSlide(idx) {
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.replace('bg-[#FF8C00]', 'bg-white/20');
+            currentSlide = idx;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.replace('bg-white/20', 'bg-[#FF8C00]');
+        }
+
+        setInterval(() => {
+            let next = (currentSlide + 1) % slides.length;
+            changeSlide(next);
+        }, 8000);
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => changeSlide(parseInt(dot.dataset.idx)));
+        });
+
+        // OBSERVER PARA REVELAÇÃO NO SCROLL
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+        reveals.forEach(el => observer.observe(el));
+
+        // MENU MOBILE (ABRIR/FECHAR)
+        const toggle = document.getElementById('mobile-toggle');
+        const close = document.getElementById('mobile-close');
+        const menu = document.getElementById('mobile-menu');
+        const links = document.querySelectorAll('.mobile-link');
+
+        toggle.addEventListener('click', () => menu.classList.remove('translate-x-full'));
+        close.addEventListener('click', () => menu.classList.add('translate-x-full'));
+        links.forEach(l => l.addEventListener('click', () => menu.classList.add('translate-x-full')));
+    </script>
+</body>
+</html>
